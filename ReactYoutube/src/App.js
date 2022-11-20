@@ -3,22 +3,19 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './Components/Home/Home'
 import Navbar from './Components/Navbar/Navbar'
 import Sidebar from './Components/Sidebar/Sidebar'
-// import VideoPlayer from './Components/VideoPlayer/VideoPlayer';
+import User from './Components/User/User'
 
- function App() {
+function App() {
   return (
     <div>
+      
       <Router>
-        <Navbar />
-        <Sidebar />
-        {/* <Route path='/video/:videoId'>
-            <div className="app__mainpage">
-              <VideoPlayer />
-            </div>
-          </Route> */}
+      <Navbar />
+      <Sidebar />
         <Routes>
-          <Route exact path="/" element={<Home />}/>
+          <Route exact path="/" element={<Home />} />
         </Routes>
+        <User/>
       </Router>
     </div>
   );

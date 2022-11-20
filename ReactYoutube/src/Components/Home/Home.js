@@ -1,43 +1,29 @@
-import React, { useState } from 'react'
-import './Home.css'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import Video from './Video'
-import VideoData from './Videos.json'
+import './Home.css'
 
 const Home = () => {
 
-  const categoryData = ["All", "Gaming",  "Music","Javascript", "Mixes", "Lives", "Programming", "Lofi Songs"]
-
-  const [category, setCategory] = useState("All")
-  const {videos} = VideoData
-  const [onDisplay, setonDisplay] = useState(videos)
-
-  const handleCategory = (tag)=>{
-    setCategory(tag)
-    if (tag === "All") {
-      setonDisplay(videos)
-      return
-    }
-    setonDisplay(videos.filter((video)=> video.category === tag))
+  const [videos, setVideos] = useState([]);
+  const fetchData = async () => {
+    const response = await axios.get("http://localhost:8585/api/Youtubes")
+      .then((res) => res.data);
+    setVideos(response);
   }
-  
-
+  useEffect(() => { 
+    fetchData();
+  }, [])
+console.log(videos);
   return (
-    <>
-      <div className="homeContainer" id='homeContainer'>
-        <div className="categoryContainer">
-          {categoryData.map((tab) => {
-            return <h3 className={`categoryTab ${category === tab && 'active'}`} key={tab} onClick={() => handleCategory(tab)}>{tab}</h3>
-          })}
-        </div>
-       
-        <div className="videoContainer">
-          {onDisplay.map((video)=>{
-            return <Video video={video} key={video.image}/>
-          })}
-        </div>
-      </div>
-    </>
-  )
-}
+    <div className="videoContainer">
+    {videos.map((video) =>
+          <Video video={video} key={video.ID}/>
+        )}
+  </div>
+    
+  );
+};
+
 
 export default Home

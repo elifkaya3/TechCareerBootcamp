@@ -3,6 +3,8 @@ import './Video.css'
 
 const Video = ({video}) => {
 
+    
+
     const countViews = (number)=>{
         if (number.toString().length === 4) {
             return number.toString().slice(0,1)+'B'
@@ -25,15 +27,15 @@ const Video = ({video}) => {
     <>
         <div className="videoBox">
             <div className="thumbnailInfo">
-                <img src={video.image} alt="Thumbnail" className='videoThumbnail'/>
-                <p>{video.duration}</p>
+                <img src={video.ImageUrl} alt="Thumbnail" className='videoThumbnail'/>
+                <p>{video.Duration}</p>
             </div>
             <div className="videoInfo">
-                <img src={video.logo} alt="Channel Logo" className='video_channel'/>
+                <img src={video.Logo} alt="Channel Logo" className='video_channel'/>
                 <div>
-                    <h2>{video.title.length <= 70? video.title : `${video.title.substr(0,70)}...`}</h2>
-                    <h3 title={video.channel}>{video.channel} {video.isVerified && <span className='material-symbols-rounded active'>check_circle</span>}</h3>
-                    <p>{countViews(video.views)} görüntüleme • {video.uploadTime} önce</p>
+                    <h2>{video.Title.length <= 70? video.Title : `${video.Title.substr(0,70)}...`}</h2>
+                    <h3 title={video.Channel}>{video.Channel} {video.IsVerified && <span className='material-symbols-rounded active'>check_circle</span>}</h3>
+                    <p>{countViews(video.Viewss)} görüntüleme • {video.UploadTime} önce</p>
                 </div>
             </div>
         </div>

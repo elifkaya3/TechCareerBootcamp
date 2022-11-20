@@ -104,7 +104,8 @@
 .videoContainer{
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
-    padding: 20px;
+    padding: 75px;
+    background-color: #141414;
     column-gap: 16px;
     row-gap: 30px;
 }
